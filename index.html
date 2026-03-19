@@ -1,0 +1,759 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>宋涛｜个人主页</title>
+  <meta name="description" content="宋涛个人主页｜博士后、工学博士、教授级高级工程师" />
+  <style>
+    :root{
+      --bg:#f3f0ea;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#5b6472;
+      --primary:#1f4e79;
+      --primary-deep:#163955;
+      --accent:#a65a3a;
+      --accent-soft:#f6ebe4;
+      --line:#ddd6cc;
+      --hero-a:#18354f;
+      --hero-b:#275d73;
+      --hero-c:#8b4d33;
+      --shadow:0 12px 32px rgba(31,41,55,.08);
+      --max:1180px;
+      --highlight:#c00000;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC",Arial,sans-serif;
+      background:linear-gradient(180deg, #f8f5ef 0%, var(--bg) 100%);
+      color:var(--text);
+      line-height:1.8;
+    }
+    a{color:var(--primary);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+
+    .hero{
+      background:
+        radial-gradient(circle at 85% 20%, rgba(255,255,255,.08), transparent 22%),
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,.08), transparent 20%),
+        linear-gradient(135deg, var(--hero-a), var(--hero-b) 58%, var(--hero-c));
+      color:#fff;
+      padding:62px 0 42px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.55fr .85fr;
+      gap:24px;
+      align-items:stretch;
+    }
+    .hero-main,.hero-side{
+      background:rgba(255,255,255,.09);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:22px;
+      backdrop-filter: blur(6px);
+      box-shadow:0 18px 40px rgba(0,0,0,.14);
+    }
+    .hero-main{padding:30px 32px}
+    .hero-side{padding:28px}
+
+    .hero-profile{
+      display:grid;
+      grid-template-columns:170px 1fr;
+      gap:24px;
+      align-items:center;
+    }
+    .photo-frame{
+      width:170px;
+      aspect-ratio: 3 / 4;
+      background:rgba(255,255,255,.18);
+      border-radius:22px;
+      padding:10px;
+      box-shadow:0 8px 24px rgba(0,0,0,.14);
+    }
+    .photo-frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:16px;
+      display:block;
+      background:#fff;
+    }
+
+    .badge{
+      display:inline-block;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.08em;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.16);
+      margin-bottom:14px;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size:clamp(34px,5vw,54px);
+      line-height:1.08;
+      font-weight:800;
+      letter-spacing:.02em;
+    }
+    .subtitle{
+      margin:0 0 12px;
+      font-size:clamp(18px,2vw,24px);
+      font-weight:600;
+    }
+    .summary{
+      margin:0 0 18px;
+      font-size:17px;
+      max-width:760px;
+      opacity:.96;
+    }
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 13px;
+      border-radius:999px;
+      background:rgba(255,255,255,.13);
+      border:1px solid rgba(255,255,255,.12);
+      font-size:14px;
+    }
+
+    .contact-card h3{margin:0 0 14px;font-size:20px}
+    .contact-item{
+      margin:0 0 14px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(255,255,255,.1);
+    }
+    .contact-item strong{
+      display:block;
+      font-size:12px;
+      letter-spacing:.06em;
+      opacity:.82;
+      margin-bottom:4px;
+      text-transform:uppercase;
+    }
+    .contact-item a{color:#ffffff;font-weight:700;font-size:17px}
+    .contact-item span{color:#ffffff;font-size:15px}
+    .quote{
+      margin:18px 0 0;
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(255,255,255,.11);
+      border-left:4px solid rgba(255,255,255,.48);
+      color:#f7fbff;
+    }
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(250,248,244,.92);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(22,57,85,.08);
+    }
+    .nav-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{color:var(--primary-deep);font-weight:800;letter-spacing:.02em}
+    .nav-links{display:flex;flex-wrap:wrap;gap:10px}
+    .nav-links a{
+      padding:8px 12px;
+      border-radius:10px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .nav-links a:hover{
+      background:#ece5db;
+      color:var(--primary-deep);
+      text-decoration:none;
+    }
+
+    main{padding:34px 0 74px}
+    .section{margin-bottom:24px}
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:28px;
+    }
+    .section-title{
+      margin:0 0 18px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:28px;
+      color:var(--primary-deep);
+    }
+    .section-title::before{
+      content:"";
+      width:8px;
+      height:30px;
+      border-radius:999px;
+      background:linear-gradient(180deg, var(--primary), var(--accent));
+      flex:0 0 auto;
+    }
+    .lead{margin-top:0;font-size:17px;color:#334155}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .metric{
+      background:linear-gradient(180deg, #fffaf6, #f7f3ee);
+      border:1px solid #e4dbd1;
+      border-radius:18px;
+      padding:20px;
+    }
+    .metric .num{font-size:34px;line-height:1;font-weight:800;color:var(--accent);margin-bottom:8px}
+    .metric .label{color:var(--muted);font-size:14px}
+
+    .bullet-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px 22px;
+    }
+    .bullet-list li{
+      position:relative;
+      padding-left:18px;
+      color:#344256;
+    }
+    .bullet-list li::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:.92em;
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--accent);
+      transform:translateY(-50%);
+    }
+
+    .timeline{position:relative;padding-left:24px}
+    .timeline::before{
+      content:"";
+      position:absolute;
+      left:7px;
+      top:6px;
+      bottom:8px;
+      width:2px;
+      background:#dfd7cd;
+    }
+    .item{position:relative;padding-left:18px;margin-bottom:18px}
+    .item::before{
+      content:"";
+      position:absolute;
+      left:-21px;
+      top:10px;
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:var(--primary);
+      box-shadow:0 0 0 4px #f5efe7;
+    }
+    .time{
+      display:inline-block;
+      font-size:13px;
+      font-weight:700;
+      color:var(--accent);
+      background:var(--accent-soft);
+      padding:4px 10px;
+      border-radius:999px;
+      margin-bottom:8px;
+    }
+    .item h3{margin:0 0 4px;font-size:18px;color:var(--primary-deep)}
+    .meta{font-size:14px;color:var(--muted)}
+
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .mini-card{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      background:linear-gradient(180deg,#ffffff,#fbfaf7);
+    }
+    .mini-card h3{margin:0 0 8px;color:var(--primary-deep);font-size:18px}
+    .mini-card p{margin:0;color:#475569}
+
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:18px}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:760px;
+      font-size:14px;
+      background:#fff;
+    }
+    th,td{
+      padding:12px 10px;
+      text-align:left;
+      vertical-align:top;
+      border-bottom:1px solid #ece5dd;
+    }
+    th{background:#f8f3ec;color:var(--primary-deep);font-weight:700}
+
+    .callout{
+      padding:18px 20px;
+      border-radius:18px;
+      background:linear-gradient(180deg,#fff8f1,#f8f2ea);
+      border:1px solid #eadfce;
+      color:#3d4b5f;
+    }
+    .hi{color:var(--highlight);font-weight:800;}
+    .footer{text-align:center;color:#7b8695;font-size:13px;padding:28px 0 6px}
+
+    @media (max-width: 980px){
+      .hero-grid,.grid-3,.cards,.bullet-list{grid-template-columns:1fr}
+      .hero-profile{grid-template-columns:1fr;justify-items:center;text-align:center}
+      .nav-inner{flex-direction:column;align-items:flex-start}
+    }
+    @media (max-width: 640px){
+      .hero{padding-top:42px}
+      .hero-main,.hero-side,.card{padding:20px}
+      .section-title{font-size:24px}
+      .photo-frame{width:150px}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <section class="hero-main">
+        <div class="hero-profile">
+          <div class="photo-frame">
+            <img src="data:image/jpeg;base64,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" alt="宋涛照片" />
+          </div>
+          <div>
+            <div class="badge">PERSONAL WEBSITE</div>
+            <h1>宋涛</h1>
+            <p class="subtitle">博士后 · 工学博士 · 教授级高级工程师</p>
+            <p class="summary">
+              聚焦计算机视觉与智能控制、具身智能、工业设备故障诊断与寿命预测、智能康养医疗仪器与系统设计，
+              兼具高校科研、平台建设与央企科技成果转化实战经验。
+            </p>
+            <div class="chips">
+              <span class="chip">河北省绿智散货大型装备智能运维技术创新中心 副主任</span>
+              <span class="chip">虚拟现实工程技术研究中心 主任</span>
+              <span class="chip">康养AI仪器与XR交互系统创新研究室 主任</span>
+              <span class="chip">中国指挥与控制学会专委会委员</span>
+              <span class="chip">中国仪器仪表学会青工委委员</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="hero-side contact-card">
+        <h3>联系方式</h3>
+        <div class="contact-item">
+          <strong>电话</strong>
+          <a href="tel:18533573377">185 3357 3377</a>
+        </div>
+        <div class="contact-item">
+          <strong>邮箱</strong>
+          <a href="mailto:tsong@ysu.edu.cn">tsong@ysu.edu.cn</a>
+        </div>
+        <div class="contact-item">
+          <strong>单位</strong>
+          <span>燕山大学 电气工程学院 仪器科学与工程系</span>
+        </div>
+        <div class="contact-item">
+          <strong>职务</strong>
+          <span>教授</span>
+        </div>
+        <div class="quote">央企工作十六年，具有丰富的科技成果转化实战经验。</div>
+      </aside>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">宋涛 · 个人网页</div>
+      <div class="nav-links">
+        <a href="#about">个人简介</a>
+        <a href="#direction">研究方向</a>
+        <a href="#experience">经历</a>
+        <a href="#results">研究成果</a>
+        <a href="#projects">代表项目</a>
+        <a href="#contribution">行业贡献</a>
+        <a href="#papers">论文专利</a>
+        <a href="#honors">荣誉</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="about" class="section">
+      <div class="card">
+        <h2 class="section-title">个人简介</h2>
+        <p class="lead">
+          宋涛，博士后、工学博士、教授级高级工程师。现任燕山大学电气工程学院仪器科学与工程系教授，
+          并担任河北省绿智散货大型装备智能运维技术创新中心副主任、虚拟现实工程技术研究中心主任、
+          康养AI仪器与XR交互系统创新研究室主任等职务。
+        </p>
+        <div class="grid-3">
+          <div class="metric">
+            <div class="num">16年</div>
+            <div class="label">人工智能相关系统研发与产业化实践积累</div>
+          </div>
+          <div class="metric">
+            <div class="num">18项</div>
+            <div class="label">主持与参与各类课题</div>
+          </div>
+          <div class="metric">
+            <div class="num">2500万+</div>
+            <div class="label">横向项目累计经费</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="direction" class="section">
+      <div class="card">
+        <h2 class="section-title">研究方向</h2>
+        <ul class="bullet-list">
+          <li>计算机视觉与智能控制</li>
+          <li>具身智能（机器人导航定位与路径规划）</li>
+          <li>工业设备故障诊断与寿命预测</li>
+          <li>智能康养医疗仪器与系统设计</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="card">
+        <h2 class="section-title">科研与学术工作经历</h2>
+        <div class="timeline">
+          <div class="item">
+            <div class="time">2025.10 至今</div>
+            <h3>燕山大学 · 河北省绿智散货大型装备智能运维技术创新中心</h3>
+            <div class="meta">管理委员会副主任 ｜ 教授级高级工程师</div>
+          </div>
+          <div class="item">
+            <div class="time">2023.07 至今</div>
+            <h3>燕山大学 · 电气工程学院</h3>
+            <div class="meta">教授级高级工程师 / 教授</div>
+          </div>
+          <div class="item">
+            <div class="time">2021.02 – 2023.06</div>
+            <h3>中国机械工业集团科学技术研究院视听机械研究所（秦皇岛）</h3>
+            <div class="meta">研发中心主任 ｜ 教授级高级工程师</div>
+          </div>
+          <div class="item">
+            <div class="time">2017.12 – 2021.05</div>
+            <h3>沈阳仪表科学研究院国家博士后工作站 / 视听机械研究所（秦皇岛）</h3>
+            <div class="meta">博士后 ｜ 光学事业部部长 / 高级工程师</div>
+          </div>
+          <div class="item">
+            <div class="time">2015.12 – 2021.01</div>
+            <h3>中国机械工业集团科学技术研究院视听机械研究所（秦皇岛）</h3>
+            <div class="meta">光学事业部部长 ｜ 高级工程师</div>
+          </div>
+          <div class="item">
+            <div class="time">2011.05 – 2015.11</div>
+            <h3>中国机械工业集团科学技术研究院视听机械研究所（秦皇岛）</h3>
+            <div class="meta">技术部 ｜ 工程师</div>
+          </div>
+          <div class="item">
+            <div class="time">2008.02 – 2011.04</div>
+            <h3>中国机械工业集团科学技术研究院视听机械研究所（秦皇岛）</h3>
+            <div class="meta">技术部 ｜ 助理工程师</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="section">
+      <div class="card">
+        <h2 class="section-title">研究成果概览</h2>
+        <p class="lead">
+          聚焦计算机视觉与智能控制、具身智能、工业设备故障诊断与寿命预测、智能康养医疗仪器与系统设计等领域，
+          主持并参与了河北省科技支撑计划项目、国机集团科技发展基金项目（省部级）、科技部科研院所创新能力专项、
+          河北省自然科学基金青年专项资助项目、河北省高等学校科学研究专项资金项目、河北省中小企业创新基金等各类课题
+          <span class="hi">18项</span>；承担横向课题 <span class="hi">30余项</span>，总经费<span class="hi">超过2500万</span>。
+        </p>
+        <ul class="bullet-list">
+          <li>在国内外期刊发表论文<span class="hi">40余篇</span>。</li>
+          <li>获得发明专利<span class="hi">25项</span>、软件著作权<span class="hi">4项</span>、实用新型<span class="hi">6项</span>。</li>
+          <li>作为第一起草人，完成行业标准<span class="hi">1项</span>、企业标准<span class="hi">1项</span>。</li>
+          <li>研究覆盖港口物流、智能制造、文旅科教、康养医疗等方向。</li>
+          <li>兼具科研创新、产品开发、成果转化与平台建设能力。</li>
+          <li>形成了从技术研发到产业应用的系统化创新路径。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="card">
+        <h2 class="section-title">代表性课题与项目</h2>
+        <div class="cards">
+          <div class="mini-card">
+            <h3>纵向代表课题</h3>
+            <p>包括“基于机器视觉的港口传动设备皮带缺陷智能监测平台关键技术研究”“面向滑雪运动的智慧健身虚拟仿真系统的研制”“触摸式动感多媒体数字投影球系统的研制”等。</p>
+          </div>
+          <div class="mini-card">
+            <h3>横向代表项目</h3>
+            <p>包括秦皇岛港集团皮带机流程智能控制技术研究、唐山港集团 AR 故障诊断专家库、CAVE 驾驶舱应用研究、四足仿生机器人应用研究等。</p>
+          </div>
+        </div>
+
+        <h3 style="margin:24px 0 10px;color:#163955">主持代表性项目</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>项目名称</th>
+                <th>时间</th>
+                <th>角色</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>秦皇岛港集团基于料流位置追踪的皮带机流程智能控制技术研究</td>
+                <td>2026.2–2026.12</td>
+                <td>负责人</td>
+              </tr>
+              <tr>
+                <td>“智动未来”康复训练系统设计与研究</td>
+                <td>2025.1–2026.12</td>
+                <td>负责人</td>
+              </tr>
+              <tr>
+                <td>用于GIS-110KV变电站的AR故障诊断专家库建设与应用</td>
+                <td>2024.1–2024.12</td>
+                <td>负责人</td>
+              </tr>
+              <tr>
+                <td>用于卸船机远控及实训的高度沉浸式CAVE驾驶舱应用研究</td>
+                <td>2024.1–2025.6</td>
+                <td>负责人</td>
+              </tr>
+              <tr>
+                <td>唐山港集团四足仿生机器人应用研究</td>
+                <td>2024.1–2025.6</td>
+                <td>负责人</td>
+              </tr>
+              <tr>
+                <td>包头冀东水泥有限公司矿山长皮带防撕裂检测项目</td>
+                <td>2023.12–2026.12</td>
+                <td>负责人</td>
+              </tr>
+              <tr>
+                <td>农业机械驾驶虚拟仿真系统研发</td>
+                <td>2020.5–2021.5</td>
+                <td>负责人</td>
+              </tr>
+              <tr>
+                <td>馆类及教育装备用球型投影显示系统研制项目</td>
+                <td>2016.5–2017.5</td>
+                <td>负责人</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="contribution" class="section">
+      <div class="card">
+        <h2 class="section-title">行业贡献与建设成果</h2>
+        <div class="cards">
+          <div class="mini-card">
+            <h3>实验室规划</h3>
+            <p>负责策划三亚学院新能源汽车智能仿真与感知实验室、国家农机装备创新中心农业机械驾驶虚拟仿真实训室、燕山大学机械学院智能制造仿真实验室等建设方案。</p>
+          </div>
+          <div class="mini-card">
+            <h3>技术开发</h3>
+            <p>主导开发港口智能监测平台、CAVE 驾驶舱、AR 故障诊断系统、VR 心理疗愈系统、滑雪健身模拟装备、数字党建文化展示仪等软硬件产品。</p>
+          </div>
+          <div class="mini-card">
+            <h3>平台建设</h3>
+            <p>作为主要发起人筹建国家级工程中心分中心，并策划多个高水平仿真实验室和实训平台方案。</p>
+          </div>
+          <div class="mini-card">
+            <h3>代表性产品</h3>
+            <p>包括港口皮带缺陷智能监测平台、AR变电站故障诊断系统、VR心理疗愈系统、数字化球型成像装备、滑雪健身模拟器等。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="papers" class="section">
+      <div class="card">
+        <h2 class="section-title">代表论文与专利</h2>
+
+        <h3 style="margin:0 0 10px;color:#163955">代表论文</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>论文题目</th>
+                <th>刊物</th>
+                <th>排名/身份</th>
+                <th>时间</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>基于全局阈值与多约束的弱光双目鱼眼相机标定</td>
+                <td>仪器仪表学报</td>
+                <td>通讯作者</td>
+                <td>2025-11-15</td>
+              </tr>
+              <tr>
+                <td>Wide Parallax Image Stitching With Balanced Alignment-Naturalness</td>
+                <td>IEEE Access</td>
+                <td>1作 & 通讯作者</td>
+                <td>2025-05-12</td>
+              </tr>
+              <tr>
+                <td>Dual-stream feature pyramid network with task interaction for underwater object detection</td>
+                <td>Digital Signal Processing</td>
+                <td>通讯作者</td>
+                <td>2025-08-01</td>
+              </tr>
+              <tr>
+                <td>Nonlinear self-calibration method based on phase registration in phase-shifting profilometry</td>
+                <td>Optics and Laser Technology</td>
+                <td>第3作者</td>
+                <td>2023-07-14</td>
+              </tr>
+              <tr>
+                <td>基于B样条曲线的投影图像颜色校正方法</td>
+                <td>计算机应用与软件</td>
+                <td>第1作者</td>
+                <td>2022</td>
+              </tr>
+              <tr>
+                <td>GAN Image Inpainting Optimization and Recognition Based on Ship's water Gauge</td>
+                <td>Nonlinear Dynamics</td>
+                <td>通讯作者</td>
+                <td>2025-04-02</td>
+              </tr>
+              <tr>
+                <td>基于B样条曲线的投影图像边缘融合方法</td>
+                <td>应用光学</td>
+                <td>第1作者</td>
+                <td>2021</td>
+              </tr>
+              <tr>
+                <td>基于贝塞尔曲面的投影图像几何优化方法</td>
+                <td>燕山大学学报</td>
+                <td>第1作者</td>
+                <td>2021</td>
+              </tr>
+              <tr>
+                <td>基于质心点优化的鱼眼摄像机标定</td>
+                <td>光子学报</td>
+                <td>第1作者</td>
+                <td>2016</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 style="margin:24px 0 10px;color:#163955">代表专利</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>专利项目名称</th>
+                <th>本人排名</th>
+                <th>类型</th>
+                <th>时间</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>一种基于语义引导的动态融合网络弱光环境图像增强方法</td>
+                <td>1</td>
+                <td>发明</td>
+                <td>2026.2.17</td>
+              </tr>
+              <tr>
+                <td>一种用于散货料堆测量的三维重建系统标定方法</td>
+                <td>1</td>
+                <td>发明</td>
+                <td>2025.7.29</td>
+              </tr>
+              <tr>
+                <td>一种自适应欠驱动门机消摆防冲顶系统及方法</td>
+                <td>1</td>
+                <td>发明</td>
+                <td>2025.6.13</td>
+              </tr>
+              <tr>
+                <td>一种基于输入整形和轨道规划的桥式抓斗卸船机防摇控制方法</td>
+                <td>1</td>
+                <td>发明</td>
+                <td>2025.5.16</td>
+              </tr>
+              <tr>
+                <td>一种基于B样条曲线的投影图像边缘亮度调节方法</td>
+                <td>1（独著）</td>
+                <td>发明</td>
+                <td>2023</td>
+              </tr>
+              <tr>
+                <td>一种智慧滑雪健身仿真模拟器</td>
+                <td>1</td>
+                <td>实用新型</td>
+                <td>2019</td>
+              </tr>
+              <tr>
+                <td>异型幕图像拼接校正系统V1.0</td>
+                <td>1</td>
+                <td>软件著作权</td>
+                <td>2021</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="honors" class="section">
+      <div class="card">
+        <h2 class="section-title">获得荣誉</h2>
+        <ul class="bullet-list">
+          <li>中国机器人及人工智能大赛，<span class="hi">国家级优秀教师</span>，2025。</li>
+          <li>中国机器人及人工智能大赛，河北省级优秀教师，2025。</li>
+          <li>中国机器人及人工智能大赛（机器人创新赛），<span class="hi">省级一等奖</span>、<span class="hi">国家级一等奖</span>，指导教师，2025。</li>
+          <li>中国机器人及人工智能大赛（人工智能创新赛），<span class="hi">省级一等奖</span>、<span class="hi">国家级一等奖</span>，指导教师，2025。</li>
+          <li>“建行杯”河北省大学生创新大赛，<span class="hi">省级铜奖</span>，指导教师，2025。</li>
+          <li>“创青春”全国大学生创新创业大赛，<span class="hi">省级一等奖</span>，指导教师，2018。</li>
+          <li>中国机械工业科学技术奖，<span class="hi">部级二等奖</span>，2014.10。</li>
+          <li>秦皇岛海港区科技创新大赛，<span class="hi">一等奖</span>，2013.12。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <h2 class="section-title">联系与合作</h2>
+        <div class="callout">
+          欢迎围绕计算机视觉与智能控制、具身智能（机器人导航定位与路径规划）、工业设备故障诊断与寿命预测、
+          智能康养医疗仪器与系统设计等方向开展学术交流、项目合作与成果转化。
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">© 宋涛个人主页 · 单文件静态网页</div>
+  </main>
+</body>
+</html>
